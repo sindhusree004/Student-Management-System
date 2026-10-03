@@ -1,0 +1,157 @@
+{
+  "info": {
+    "name": "Student Management System API",
+    "description": "Complete CRUD test collection for Student Management System\nBase URL: http://localhost:8080/api",
+    "_postman_id": "student-mgmt-v1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080/api", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "1. Create Valid Student",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/students",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Ravi Kumar\",\n  \"email\": \"ravi.kumar@college.edu\",\n  \"phone\": \"9876543201\",\n  \"department\": \"Computer Science\",\n  \"year\": 3,\n  \"cgpa\": 8.5\n}"
+        }
+      }
+    },
+    {
+      "name": "2. Create Student - Missing Fields (400)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/students",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"\"\n}"
+        }
+      }
+    },
+    {
+      "name": "3. Create Student - Invalid Email (400)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/students",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"not-an-email\",\n  \"phone\": \"9876543210\",\n  \"department\": \"CS\",\n  \"year\": 2,\n  \"cgpa\": 7.5\n}"
+        }
+      }
+    },
+    {
+      "name": "4. Create Student - Duplicate Email (409)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/students",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Duplicate\",\n  \"email\": \"ravi.kumar@college.edu\",\n  \"phone\": \"9876543211\",\n  \"department\": \"IT\",\n  \"year\": 1,\n  \"cgpa\": 6.0\n}"
+        }
+      }
+    },
+    {
+      "name": "5. Get All Students",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/students"
+      }
+    },
+    {
+      "name": "6. Get Student by ID",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/students/1"
+      }
+    },
+    {
+      "name": "7. Get Student - Invalid ID (404)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/students/9999"
+      }
+    },
+    {
+      "name": "8. Update Student",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/students/1",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Aarav Sharma (Updated)\",\n  \"email\": \"aarav.sharma@college.edu\",\n  \"phone\": \"9876543210\",\n  \"department\": \"Computer Science\",\n  \"year\": 4,\n  \"cgpa\": 9.0\n}"
+        }
+      }
+    },
+    {
+      "name": "9. Update Student - Invalid ID (404)",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/students/9999",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Ghost\",\n  \"email\": \"ghost@test.com\",\n  \"phone\": \"9000000000\",\n  \"department\": \"IT\",\n  \"year\": 1,\n  \"cgpa\": 5.0\n}"
+        }
+      }
+    },
+    {
+      "name": "10. Delete Student",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/students/3"
+      }
+    },
+    {
+      "name": "11. Delete Student - Invalid ID (404)",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/students/9999"
+      }
+    },
+    {
+      "name": "Search by Name",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/students?search=priya",
+          "query": [{ "key": "search", "value": "priya" }]
+        }
+      }
+    },
+    {
+      "name": "Filter by Department",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/students?department=Computer Science",
+          "query": [{ "key": "department", "value": "Computer Science" }]
+        }
+      }
+    },
+    {
+      "name": "Filter by Year",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/students?year=2",
+          "query": [{ "key": "year", "value": "2" }]
+        }
+      }
+    },
+    {
+      "name": "Get Student Count",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/students/count"
+      }
+    }
+  ]
+}

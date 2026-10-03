@@ -1,0 +1,37 @@
+# ── Environment files (NEVER commit these) ──────────────────
+.env
+.env.local
+.env.production
+.env.*.local
+
+# ── Java / Maven ─────────────────────────────────────────────
+backend/target/
+*.class
+*.jar
+*.war
+.mvn/wrapper/maven-wrapper.jar
+
+# ── Node.js ──────────────────────────────────────────────────
+node_modules/
+backend-node/node_modules/
+backend-node/studentdb.sqlite
+npm-debug.log*
+
+# ── React ────────────────────────────────────────────────────
+frontend/node_modules/
+frontend/build/
+frontend/.env.local
+
+# ── IDEs ─────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.iml
+*.iws
+
+# ── OS ───────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Logs ─────────────────────────────────────────────────────
+*.log
+logs/
